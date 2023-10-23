@@ -10,7 +10,9 @@ router.register(r'product', ProductViewSet, basename='Product')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', include('user_auth.urls')),
     path('', include(router.urls)),
+
 ]
 
 if settings.DEBUG:

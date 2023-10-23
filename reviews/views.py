@@ -42,7 +42,7 @@ from rest_flex_fields import is_expanded
 
 class ProductViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     permit_list_expands = ['category', 'sites', 'comments', 'sites.company', 'sites.productsize']
     filterset_fields = ('category',)
 

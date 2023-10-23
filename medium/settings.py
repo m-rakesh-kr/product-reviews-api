@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'django_filters',
+    'user_auth',
     'reviews',
 
 ]
@@ -128,8 +129,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Rest_Framework Configuration
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 # Simple_JWT Configuration
 SIMPLE_JWT = {
