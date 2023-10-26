@@ -1,10 +1,3 @@
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework.viewsets import ReadOnlyModelViewSet
-
-from .serializers import ProductSerializer
-from .models import Product
-
 # class ProductViewSet(ReadOnlyModelViewSet):
 #     serializer_class = ProductSerializer
 #     queryset = Product.objects.all()
@@ -12,6 +5,7 @@ from .models import Product
 #     """
 #         path(irl) for extra method-> http://127.0.0.1:8000/product/1/extra_method/
 #     """
+
 
 # @action(detail=False)
 # def get_list(self, request):
@@ -35,13 +29,15 @@ from .models import Product
 from .serializers import ProductSerializer
 from .models import Product
 from rest_framework.viewsets import ReadOnlyModelViewSet
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_flex_fields.views import FlexFieldsMixin
 from rest_flex_fields import is_expanded
+from medium.authentication import CustomJWTAuthentication
 
 
 class ProductViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
+    authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
     permit_list_expands = ['category', 'sites', 'comments', 'sites.company', 'sites.productsize']
     filterset_fields = ('category',)
